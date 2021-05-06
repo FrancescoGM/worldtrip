@@ -9,7 +9,7 @@ import earthIcon from '../assets/icons/earth.svg'
 import { TravelItem } from '../components/TravelItem'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import SwiperCore, { Pagination, Navigation } from 'swiper'
-
+import { Header } from '../components/Header'
 import {
   Box,
   Flex,
@@ -18,6 +18,7 @@ import {
   useBreakpointValue,
   Divider
 } from '@chakra-ui/react'
+import { SwiperItem } from '../components/SwiperItem'
 
 SwiperCore.use([Pagination, Navigation])
 
@@ -31,6 +32,7 @@ export default function Home() {
       <Head>
         <title>Worldtrip</title>
       </Head>
+      <Header />
       <Flex
         as="main"
         w="100%"
@@ -63,7 +65,6 @@ export default function Home() {
                 <br /> infinitas possibilidades.
               </Text>
               <Text
-                as="p"
                 color="gray.100"
                 maxW="524px"
                 fontWeight="normal"
@@ -141,37 +142,32 @@ export default function Home() {
           }}
         >
           <SwiperSlide>
-            <Box w="100%" h="100%">
-              <Image
-                w="100%"
-                display="block"
-                src="https://images.unsplash.com/photo-1519677100203-a0e668c92439?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
-              />
-              <Text
-                position="absolute"
-                top="50%"
-                left="50%"
-                transform="translate(-50%, -50%)"
-                color="gray.50"
-                fontSize="4xl"
-                textAlign="center"
-                fontWeight="bold"
-              >
-                Europa
-                <br />
-                <Text color="gray.300" fontSize="xl">
-                  O continente mais antigo
-                </Text>
-              </Text>
-            </Box>
+            <SwiperItem
+              navigateTo="europe"
+              url="https://images.unsplash.com/photo-1513026705753-bc3fffca8bf4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80"
+              alt="Europa"
+              title="Europa"
+              subtitle="O continente mais antigo"
+            />
           </SwiperSlide>
           <SwiperSlide>
-            <Image w="100%" src="/images/background-airplane.png" />
+            <SwiperItem
+              navigateTo="europe"
+              url="https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80"
+              alt="África"
+              title="África"
+              subtitle="O continente mais seco"
+            />
           </SwiperSlide>
           <SwiperSlide>
-            <Image w="100%" src="/images/background-airplane.png" />
+            <SwiperItem
+              navigateTo="europe"
+              url="https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80"
+              alt="América"
+              title="América"
+              subtitle="O continente das matas"
+            />
           </SwiperSlide>
-          <div className="swiper-pagination"></div>
         </Swiper>
       </Flex>
     </>
