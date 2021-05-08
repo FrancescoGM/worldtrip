@@ -1,5 +1,5 @@
 import React from 'react'
-import { Flex, Text } from '@chakra-ui/react'
+import { Flex, Text, useBreakpointValue } from '@chakra-ui/react'
 
 interface CountryInfoProps {
   numberOfCountry: number
@@ -14,9 +14,21 @@ interface TextInfoProps {
 }
 
 function TextInfo({ number, text }: TextInfoProps) {
+  const isWideVersion = useBreakpointValue({
+    base: false,
+    sm: true
+  })
   return (
-    <Text textAlign="center" fontSize="2xl" fontWeight="semibold">
-      <Text fontSize="7xl" color="yellow.500" lineHeight="4rem">
+    <Text
+      textAlign={isWideVersion ? 'center' : 'left'}
+      fontSize={isWideVersion ? '2xl' : 'lg'}
+      fontWeight="semibold"
+    >
+      <Text
+        fontSize={isWideVersion ? '7xl' : '2xl'}
+        color="yellow.500"
+        lineHeight={isWideVersion ? '4rem' : '1rem'}
+      >
         {number}
       </Text>
       {text}
@@ -31,14 +43,12 @@ export function CountryInfo({
   numberOfPrimaryCities
 }: CountryInfoProps) {
   return (
-    <Flex gridGap="3.75rem">
+    <Flex w="100%" justify="space-between" maxW="500px">
       <TextInfo number={numberOfCountry} text="Países" />
       <TextInfo number={numberOfLanguages} text="Línguas" />
       <TextInfo
         number={numberOfPrimaryCities}
-        text={
-          numberOfCities > 100 ? `Cidades + 100` : `Cidades ${numberOfCities}`
-        }
+        text={`Cidades + ${numberOfCities}`}
       />
     </Flex>
   )

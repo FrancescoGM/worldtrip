@@ -1,26 +1,26 @@
 import React from 'react'
-import { Box, Flex, Text, SimpleGrid } from '@chakra-ui/layout'
-import { Image } from '@chakra-ui/image'
+import { Box, Flex, Text, Image, BoxProps } from '@chakra-ui/react'
 
-interface CardCityProps {
-  cityName: string
-  countryName: string
+type CityData = {
+  city: string
+  country: string
   imageUrl: string
   iconUrl: string
 }
 
-export function CardCity({
-  cityName,
-  countryName,
-  iconUrl,
-  imageUrl
-}: CardCityProps) {
+interface CardCityProps extends BoxProps {
+  cardData: CityData
+}
+
+export function CardCity({ cardData, ...rest }: CardCityProps) {
   return (
-    <Box w="256px">
+    <Box w="256px" {...rest}>
       <Flex maxH="173px" overflow="hidden" align="center" borderTopRadius="4px">
-        <Image w="100%" src={imageUrl} alt={cityName} />
+        <Image w="100%" src={cardData.imageUrl} alt={cardData.city} />
       </Flex>
       <Box
+        h="100%"
+        maxH="106px"
         borderBottomRadius="4px"
         borderWidth="1px"
         borderColor="yellow.500"
@@ -29,7 +29,7 @@ export function CardCity({
         <Flex px="6" py="4" justify="space-between" align="center">
           <Flex justify="space-between" direction="column">
             <Text fontSize="Barlow, sans-serif" fontWeight="semibold">
-              {cityName}
+              {cardData.city}
             </Text>
             <Text
               mt="3"
@@ -37,7 +37,7 @@ export function CardCity({
               fontWeight="medium"
               color="gray.300"
             >
-              {countryName}
+              {cardData.country}
             </Text>
           </Flex>
 
@@ -45,8 +45,8 @@ export function CardCity({
             w="30px"
             h="30px"
             borderRadius="50%"
-            src={iconUrl}
-            alt={`${cityName} flag`}
+            src={cardData.iconUrl}
+            alt={`${cardData.city} flag`}
           />
         </Flex>
       </Box>
